@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import org.springframework.cglib.core.Local;
-
 @Entity //Diz ao Spring/JPA: "essa classe vira uma tabela no banco"
 @Table(name = "vagas")
 
@@ -48,12 +46,16 @@ public class Vaga {
         return url;
     }
 
-    public void stUrl(String url) {
+    public void setUrl(String url) {
         this.url = url;
     }
 
-    public void setTítulo(String titulo) {
+    public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public String getTitulo() {
+        return titulo;
     }
 
     public String getEmpresa() {
