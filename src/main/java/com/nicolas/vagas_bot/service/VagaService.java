@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import com.nicolas.vagas_bot.model.AreaAtuacao;
+import com.nicolas.vagas_bot.model.Modalidade;
+import java.time.LocalDate;
 
 @Service //Diz ao Spring: "essa classe contém lógica de negócio, gerencie ela pra mim"
 
@@ -19,8 +22,7 @@ public class VagaService {
         this.vagaRepository = vagaRepository;
     }
 
-    //Salva a vaga só se a URL ainda não existir no banco
-    //Retorna a vaga salva, ou null se era duplicata 
+    //Salva a vaga só se a URL ainda não existir no banco - Retorna a vaga salva, ou null se era duplicata 
     public Vaga salvarSeNovaVaga(Vaga vaga) {
         boolean jaExiste = vagaRepository.existsByUrl(vaga.getUrl());
 
@@ -37,5 +39,14 @@ public class VagaService {
 
     public Optional<Vaga> buscarPorId(Long id) {
         return vagaRepository.findById(id);
+    }
+
+    public List<Vaga> filtrar(AreaAtuacao area, Modalidade modalidade) {
+        return vagaRepository.findByAreaAtuacaoAndModalidade(area, modalidade);
+    }
+
+    public List<Vaga> listarVagasValidas() {
+        LocalDate dataLimite = LocalDate.now().minusMonths(1);
+        return vagaRepository.findByDataPublicacaoGreaterThanEqual(dataLimite);
     }
 }

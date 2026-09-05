@@ -1,6 +1,8 @@
 package com.nicolas.vagas_bot.controller;
 
 import java.util.List;
+import com.nicolas.vagas_bot.model.AreaAtuacao;
+import com.nicolas.vagas_bot.model.Modalidade;
 import com.nicolas.vagas_bot.model.Vaga;
 import com.nicolas.vagas_bot.service.VagaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +47,20 @@ public class VagaController {
         return vagaService.buscarPorId(id)
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/filtro")
+    public ResponseEntity<List<Vaga>> filtar(
+        @RequestParam AreaAtuacao area,
+        @RequestParam Modalidade modalidade) {
+    
+        List<Vaga> vagas = vagaService.filtrar(area, modalidade);
+        return ResponseEntity.ok(vagas);
+            }
+
+    @GetMapping("/validas")
+    public ResponseEntity<List<Vaga>> listarVagasValidas() {
+        List<Vaga> vagas = vagaService.listarVagasValidas();
+        return ResponseEntity.ok(vagas);
     }
 }
