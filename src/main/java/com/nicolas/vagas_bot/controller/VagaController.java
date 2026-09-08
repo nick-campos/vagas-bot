@@ -63,4 +63,10 @@ public class VagaController {
         List<Vaga> vagas = vagaService.listarVagasValidas();
         return ResponseEntity.ok(vagas);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarVaga(@PathVariable Long id) {
+        vagaService.deletarVaga(id);
+        return ResponseEntity.noContent().build(); //Retorna 204, padrão para DELETE bem-sucedido
+    }
 }

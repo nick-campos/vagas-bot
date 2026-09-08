@@ -49,4 +49,12 @@ public class VagaService {
         LocalDate dataLimite = LocalDate.now().minusMonths(1);
         return vagaRepository.findByDataPublicacaoGreaterThanEqual(dataLimite);
     }
+
+    public void deletarVaga(Long id) {
+        // Verifica se a vaga existe antes de tentar deletar, senão o Spring lançaria uma exceção genérica difícil de entender
+        if (!vagaRepository.existsById(id)) {
+            throw new RuntimeException("Vaga não encontrada com id: + id");
+        }
+        vagaRepository.deleteById(id);
+    }
 }
