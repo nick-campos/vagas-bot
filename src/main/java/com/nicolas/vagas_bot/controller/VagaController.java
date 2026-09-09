@@ -4,10 +4,14 @@ import java.util.List;
 import com.nicolas.vagas_bot.model.AreaAtuacao;
 import com.nicolas.vagas_bot.model.Modalidade;
 import com.nicolas.vagas_bot.model.Vaga;
+import com.nicolas.vagas_bot.service.GupyScraperService;
 import com.nicolas.vagas_bot.service.VagaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController //Diz ao Spring: essa classe responde requisições HTTP e devolve dados (não uma página HTML)
 @RequestMapping("/vagas")
@@ -69,4 +73,13 @@ public class VagaController {
         vagaService.deletarVaga(id);
         return ResponseEntity.noContent().build(); //Retorna 204, padrão para DELETE bem-sucedido
     }
+
+    @Autowired 
+    private GupyScraperService gupyScraperService; //Adicione essa injeção junto das outras que você já tem
+
+    @GetMapping("/testar-scraper")
+    public List<String> testarScraper() {
+        return gupyScraperService.buscarVagas("https://wegestagio.gupy.io/");
+    }
+    
 }
