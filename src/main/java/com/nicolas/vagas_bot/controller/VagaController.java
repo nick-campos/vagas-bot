@@ -5,12 +5,14 @@ import com.nicolas.vagas_bot.model.AreaAtuacao;
 import com.nicolas.vagas_bot.model.Modalidade;
 import com.nicolas.vagas_bot.model.Vaga;
 import com.nicolas.vagas_bot.service.GupyScraperService;
+import com.nicolas.vagas_bot.service.VagaGupyDTO;
 import com.nicolas.vagas_bot.service.VagaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.util.ArrayList;
 
 
 @RestController //Diz ao Spring: essa classe responde requisições HTTP e devolve dados (não uma página HTML)
@@ -78,8 +80,17 @@ public class VagaController {
     private GupyScraperService gupyScraperService; //Adicione essa injeção junto das outras que você já tem
 
     @GetMapping("/testar-scraper")
-    public List<String> testarScraper() {
-        return gupyScraperService.buscarVagas("https://wegestagio.gupy.io/");
+    public List<VagaGupyDTO> testarScraper() {
+        List<String> links = gupyScraperService.buscarLinksDeVagas("https://wegestagio.gupy.io/");
+
+        List<VagaGupyDTO> vagasDetalhadas = new ArrayList<>();
+
+        for (String link : links) {
+            VagaGupyDTO vaga = gupyScraperService.extrairDetalhesDaVaga(link);
+            vagasDetalhadas.add(vaga);
+        }
+
+        return vagasDetalhadas;
     }
     
 }
