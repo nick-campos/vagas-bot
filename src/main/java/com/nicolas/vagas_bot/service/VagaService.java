@@ -9,25 +9,36 @@ import java.util.Optional;
 import com.nicolas.vagas_bot.model.AreaAtuacao;
 import com.nicolas.vagas_bot.model.Modalidade;
 import java.time.LocalDate;
+import com.nicolas.vagas_bot.service.GeocodingService;;
 
 @Service //Diz ao Spring: "essa classe contém lógica de negócio, gerencie ela pra mim"
 
 public class VagaService {
     private final VagaRepository vagaRepository;
+    private final GeocodingService geocodingService;
 
     //Injeção de dependência: o Spring entrega automaticamente uma instância
     //do VagaRepository pronta pra usar, sem você precisar fazer "new VagaRepository()"
     @Autowired 
-    public VagaService(VagaRepository vagaRepository) {
+    public VagaService(VagaRepository vagaRepository, GeocodingService geocodingService) {
         this.vagaRepository = vagaRepository;
+        this.geocodingService = geocodingService;
     }
 
-    //Salva a vaga só se a URL ainda não existir no banco - Retorna a vaga salva, ou null se era duplicata 
+    //Salva a vaga só se a URL ainda não existir no banco e a cidade estiver dentro do raio de SP
+    //Retorna a vaga salva, ou null se era duplicata ou fora do raio
     public Vaga salvarSeNovaVaga(Vaga vaga) {
-        boolean jaExiste = vagaRepository.existsByUrl(vaga.getUrl());
 
-        if (jaExiste) {
+        //Verifica duplicata por URL
+        if (vagaRepository.existsByUrl(vaga.getUrl())) {
             return null; //Ignora silenciosamente, sem erro
+        }
+
+        if (vaga.getLocalizacao() != null && !vaga.getLocalizacao().equalsIgnoreCase("remoto")) {
+            boolean noRaio = geocodingService.estaNoRaio(vaga.getLocalizacao());
+            if (!noRaio) {
+                return null;
+            }
         }
 
         return vagaRepository.save(vaga);
