@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
+import com.nicolas.vagas_bot.service.GeocodingService;
 
 
 @RestController //Diz ao Spring: essa classe responde requisições HTTP e devolve dados (não uma página HTML)
@@ -21,10 +22,12 @@ import java.util.ArrayList;
 public class VagaController {
     
     private final VagaService vagaService;
+    private final GeocodingService geocodingService;
 
     @Autowired 
-    public VagaController(VagaService vagaService) {
+    public VagaController(VagaService vagaService, GeocodingService geocodingService) {
         this.vagaService = vagaService;
+        this.geocodingService = geocodingService;
     }
 
     //Responde POST em /vagas
@@ -92,5 +95,11 @@ public class VagaController {
 
         return vagasDetalhadas;
     }
+
+    @GetMapping("/testar-raio")
+        public ResponseEntity<String> testarRaio(@RequestParam String cidade) {
+            boolean noRaio = geocodingService.estaNoRaio(cidade);
+            return ResponseEntity.ok("Cidade: " + cidade + " | Dentro do raio de SP: " + noRaio);
+        }
     
 }
