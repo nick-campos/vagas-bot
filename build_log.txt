@@ -1,0 +1,70 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.nicolas:vagas-bot >------------------------
+[INFO] Building vagas-bot 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ vagas-bot ---
+[INFO] Deleting C:\Users\Nicolas\Documents\Estudos\Pratico\Java Projetos\vagas-bot\target
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ vagas-bot ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ vagas-bot ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 11 source files with javac [debug parameters release 21] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/Nicolas/Documents/Estudos/Pratico/Java Projetos/vagas-bot/src/main/java/com/nicolas/vagas_bot/service/GeocodingService.java:[3,38] package com.fasterxml.jackson.databind does not exist
+[ERROR] /C:/Users/Nicolas/Documents/Estudos/Pratico/Java Projetos/vagas-bot/src/main/java/com/nicolas/vagas_bot/service/GeocodingService.java:[4,38] package com.fasterxml.jackson.databind does not exist
+[ERROR] /C:/Users/Nicolas/Documents/Estudos/Pratico/Java Projetos/vagas-bot/src/main/java/com/nicolas/vagas_bot/service/GeocodingService.java:[18,19] cannot find symbol
+  symbol:   class ObjectMapper
+  location: class com.nicolas.vagas_bot.service.GeocodingService
+[ERROR] /C:/Users/Nicolas/Documents/Estudos/Pratico/Java Projetos/vagas-bot/src/main/java/com/nicolas/vagas_bot/service/GeocodingService.java:[18,51] cannot find symbol
+  symbol:   class ObjectMapper
+  location: class com.nicolas.vagas_bot.service.GeocodingService
+[ERROR] /C:/Users/Nicolas/Documents/Estudos/Pratico/Java Projetos/vagas-bot/src/main/java/com/nicolas/vagas_bot/service/GeocodingService.java:[33,81] cannot find symbol
+  symbol:   variable BodyHandlers
+  location: class java.net.http.HttpRequest
+[ERROR] /C:/Users/Nicolas/Documents/Estudos/Pratico/Java Projetos/vagas-bot/src/main/java/com/nicolas/vagas_bot/service/GeocodingService.java:[35,13] cannot find symbol
+  symbol:   class JsonNode
+  location: class com.nicolas.vagas_bot.service.GeocodingService
+[ERROR] /C:/Users/Nicolas/Documents/Estudos/Pratico/Java Projetos/vagas-bot/src/main/java/com/nicolas/vagas_bot/service/GeocodingService.java:[38,17] cannot find symbol
+  symbol:   class JsonNode
+  location: class com.nicolas.vagas_bot.service.GeocodingService
+[INFO] 7 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.991 s
+[INFO] Finished at: 2026-09-10T14:59:48-03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.15.0:compile (default-compile) on project vagas-bot: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/Nicolas/Documents/Estudos/Pratico/Java Projetos/vagas-bot/src/main/java/com/nicolas/vagas_bot/service/GeocodingService.java:[3,38] package com.fasterxml.jackson.databind does not exist
+[ERROR] /C:/Users/Nicolas/Documents/Estudos/Pratico/Java Projetos/vagas-bot/src/main/java/com/nicolas/vagas_bot/service/GeocodingService.java:[4,38] package com.fasterxml.jackson.databind does not exist
+[ERROR] /C:/Users/Nicolas/Documents/Estudos/Pratico/Java Projetos/vagas-bot/src/main/java/com/nicolas/vagas_bot/service/GeocodingService.java:[18,19] cannot find symbol
+[ERROR]   symbol:   class ObjectMapper
+[ERROR]   location: class com.nicolas.vagas_bot.service.GeocodingService
+[ERROR] /C:/Users/Nicolas/Documents/Estudos/Pratico/Java Projetos/vagas-bot/src/main/java/com/nicolas/vagas_bot/service/GeocodingService.java:[18,51] cannot find symbol
+[ERROR]   symbol:   class ObjectMapper
+[ERROR]   location: class com.nicolas.vagas_bot.service.GeocodingService
+[ERROR] /C:/Users/Nicolas/Documents/Estudos/Pratico/Java Projetos/vagas-bot/src/main/java/com/nicolas/vagas_bot/service/GeocodingService.java:[33,81] cannot find symbol
+[ERROR]   symbol:   variable BodyHandlers
+[ERROR]   location: class java.net.http.HttpRequest
+[ERROR] /C:/Users/Nicolas/Documents/Estudos/Pratico/Java Projetos/vagas-bot/src/main/java/com/nicolas/vagas_bot/service/GeocodingService.java:[35,13] cannot find symbol
+[ERROR]   symbol:   class JsonNode
+[ERROR]   location: class com.nicolas.vagas_bot.service.GeocodingService
+[ERROR] /C:/Users/Nicolas/Documents/Estudos/Pratico/Java Projetos/vagas-bot/src/main/java/com/nicolas/vagas_bot/service/GeocodingService.java:[38,17] cannot find symbol
+[ERROR]   symbol:   class JsonNode
+[ERROR]   location: class com.nicolas.vagas_bot.service.GeocodingService
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
