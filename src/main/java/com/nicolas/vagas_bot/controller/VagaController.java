@@ -10,8 +10,7 @@ import com.nicolas.vagas_bot.service.VagaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.ArrayList;
 import com.nicolas.vagas_bot.service.GeocodingService;
 
@@ -83,17 +82,9 @@ public class VagaController {
     private GupyScraperService gupyScraperService; //Adicione essa injeção junto das outras que você já tem
 
     @GetMapping("/testar-scraper")
-    public List<VagaGupyDTO> testarScraper() {
-        List<String> links = gupyScraperService.buscarLinksDeVagas("https://wegestagio.gupy.io/");
-
-        List<VagaGupyDTO> vagasDetalhadas = new ArrayList<>();
-
-        for (String link : links) {
-            VagaGupyDTO vaga = gupyScraperService.extrairDetalhesDaVaga(link);
-            vagasDetalhadas.add(vaga);
-        }
-
-        return vagasDetalhadas;
+        public ResponseEntity<List<Vaga>> testarScraper() {
+            List<Vaga> vagasSalvas = gupyScraperService.executarScraping("https://wegestagio.gupy.io/");
+            return ResponseEntity.ok(vagasSalvas);
     }
 
     @GetMapping("/testar-raio")

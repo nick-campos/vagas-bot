@@ -62,6 +62,10 @@ public class Vaga {
         return empresa;
     }
 
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
+    }
+
     public AreaAtuacao getAreaAtuacao() {
         return areaAtuacao;
     }
