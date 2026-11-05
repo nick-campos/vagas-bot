@@ -5,7 +5,6 @@ import com.nicolas.vagas_bot.model.AreaAtuacao;
 import com.nicolas.vagas_bot.model.Modalidade;
 import com.nicolas.vagas_bot.model.Vaga;
 import com.nicolas.vagas_bot.service.GupyScraperService;
-import com.nicolas.vagas_bot.service.TelegramService;
 import com.nicolas.vagas_bot.service.VagaGupyDTO;
 import com.nicolas.vagas_bot.service.VagaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import com.nicolas.vagas_bot.service.GeocodingService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nicolas.vagas_bot.service.TelegramService;
 
