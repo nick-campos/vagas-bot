@@ -1,0 +1,20 @@
+name: Vagas Bot
+version: 1.0.0
+schema: v1
+
+models:
+  - name: Qwen Local
+    provider: ollama
+    model: qwen2.5-coder:7b
+    roles:
+      - chat
+      - edit
+      - apply
+    defaultCompletionOptions:
+      contextLength: 8192
+
+context:
+  - provider: code
+  - provider: file
+  - provider: currentFile
+  - provider: tree
