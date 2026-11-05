@@ -1,6 +1,7 @@
 package com.nicolas.vagas_bot.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -35,6 +36,10 @@ public class Vaga {
     private LocalDate dataPublicacao; //Base do filtro "não pode ter mais de 1 mês"
 
     private LocalDateTime dataEncontrada; //Base do resumo diário
+
+    // Campo para marcar se a vaga já foi enviada pelo bot
+    @Column(nullable = false, columnDefinition = "boolean default false")
+    private boolean enviada = false;
 
     public Vaga() {} //Construtor vazio exigido pelo JPA
 
@@ -113,4 +118,14 @@ public class Vaga {
     public void setDataEncontrada(LocalDateTime dataEncontrada) {
         this.dataEncontrada = dataEncontrada;
     }
-} 
+
+    // Getter e setter para o novo campo 'enviada'
+    public boolean isEnviada() {
+        return enviada;
+    }
+
+    public void setEnviada(boolean enviada) {
+        this.enviada = enviada;
+    }
+}
+
