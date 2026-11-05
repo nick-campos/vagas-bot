@@ -7,11 +7,14 @@ import com.nicolas.vagas_bot.model.AreaAtuacao;
 import com.nicolas.vagas_bot.model.Modalidade;
 import java.time.LocalDate;
 
-
 public interface VagaRepository extends JpaRepository<Vaga,Long> {
     boolean existsByUrl(String url);
 
     List<Vaga> findByAreaAtuacaoAndModalidade(AreaAtuacao areaAtuacao, Modalidade modalidade);
 
     List<Vaga> findByDataPublicacaoGreaterThanEqual(LocalDate dataLimite);
+
+    // Método adicional
+    List<Vaga> findByEnviadaFalse();
 }
+
