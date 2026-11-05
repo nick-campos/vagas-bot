@@ -2,25 +2,21 @@ package com.nicolas.vagas_bot.service;
 
 import com.nicolas.vagas_bot.model.Vaga;
 import com.nicolas.vagas_bot.repository.VagaRepository;
-
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import com.nicolas.vagas_bot.model.AreaAtuacao;
 import com.nicolas.vagas_bot.model.Modalidade;
 import java.time.LocalDate;
-
 import com.nicolas.vagas_bot.service.GeocodingService;
 
 @Service //Diz ao Spring: "essa classe contém lógica de negócio, gerencie ela pra mim"
-
 public class VagaService {
     private final VagaRepository vagaRepository;
     private final GeocodingService geocodingService;
 
     //Injeção de dependência: o Spring entrega automaticamente uma instância
     //do VagaRepository pronta pra usar, sem você precisar fazer "new VagaRepository()"
-
     public VagaService(VagaRepository vagaRepository, GeocodingService geocodingService) {
         this.vagaRepository = vagaRepository;
         this.geocodingService = geocodingService;
@@ -65,7 +61,6 @@ public class VagaService {
     public void deletarVaga(Long id) {
         // Verifica se a vaga existe antes de tentar deletar, senão o Spring lançaria uma exceção genérica difícil de entender
         if (!vagaRepository.existsById(id)) {
-
             throw new RuntimeException("Vaga não encontrada com id: " + id);
         }
         vagaRepository.deleteById(id);
