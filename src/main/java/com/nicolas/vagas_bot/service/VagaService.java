@@ -8,7 +8,6 @@ import java.util.Optional;
 import com.nicolas.vagas_bot.model.AreaAtuacao;
 import com.nicolas.vagas_bot.model.Modalidade;
 import java.time.LocalDate;
-import com.nicolas.vagas_bot.service.GeocodingService;
 
 @Service //Diz ao Spring: "essa classe contém lógica de negócio, gerencie ela pra mim"
 public class VagaService {
@@ -66,4 +65,3 @@ public class VagaService {
         vagaRepository.deleteById(id);
     }
 }
-

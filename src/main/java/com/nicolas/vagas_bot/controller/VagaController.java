@@ -62,7 +62,7 @@ public class VagaController {
     }
 
     @GetMapping("/filtro")
-    public ResponseEntity<List<Vaga>> filtar(
+    public ResponseEntity<List<Vaga>> filtrar(
         @RequestParam AreaAtuacao area,
         @RequestParam Modalidade modalidade) {
     
