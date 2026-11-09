@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import com.nicolas.vagas_bot.service.GeocodingService;
-
 import com.nicolas.vagas_bot.service.TelegramService;
+import com.nicolas.vagas_bot.service.ResumoDiarioService;
 
 @RestController //Diz ao Spring: essa classe responde requisições HTTP e devolve dados (não uma página HTML)
 @RequestMapping("/vagas")
@@ -101,5 +101,16 @@ public class VagaController {
     public ResponseEntity<String> testarTelegram() {
         telegramService.enviarMensagem(("Teste do vagas Bot!"));
         return ResponseEntity.ok("Mensagem enviada.");
+    }
+
+    //O Spring entrega o ResumoDiarioService pronto pra usar (mesmo padrão do telegramService acima)
+    @Autowired
+    private ResumoDiarioService resumoDiarioService;
+
+    //Endpoint só para teste: dispara o resumo na hora, sem esperar o agendamento
+    @GetMapping("/testar-resumo")
+    public ResponseEntity<String> testarResumo() {
+        resumoDiarioService.enviarResumoDiario();
+        return ResponseEntity.ok("Resumo enviado.");
     }
 }
