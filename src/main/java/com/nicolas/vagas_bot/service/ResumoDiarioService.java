@@ -2,6 +2,7 @@ package com.nicolas.vagas_bot.service;
 
 import com.nicolas.vagas_bot.model.Vaga;
 import com.nicolas.vagas_bot.repository.VagaRepository;
+import org.springframework.scheduling.annotation.Scheduled; // Novo import
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public class ResumoDiarioService {
         this.telegramService = telegramService;
     }
 
+    // Executa todo dia às 08:00 (horário de São Paulo): segundos, minutos, horas, dia, mês, dia da semana
+    @Scheduled(cron = "0 0 8 * * *", zone = "America/Sao_Paulo")
     public void enviarResumoDiario() {
         // Busca as vagas com vagaRepository.findByEnviadaFalse()
         List<Vaga> vagasParaEnviar = vagaRepository.findByEnviadaFalse();
